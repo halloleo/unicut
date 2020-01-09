@@ -1,4 +1,4 @@
-# Truncate Unicode to Byte length
+# unicut - Truncate Unicode strings to Byte length
 
 This project provides and analyses Python functions to truncate a Unicode string in a way that its FUT-8 byte representation does not exceed a given number of bytes.
 
