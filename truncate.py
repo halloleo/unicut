@@ -2,6 +2,7 @@
 The truncate functions
 """
 
+
 def truncate_by_concating(s, max_bytes):
     """
     Ensure that the UTF-8 encoding of a string has not more than
@@ -10,6 +11,7 @@ def truncate_by_concating(s, max_bytes):
     :param max_bytes: Maximal number of bytes
     :return: The cut string
     """
+
     def len_as_bytes(s):
         return len(s.encode(errors='replace'))
 
@@ -34,6 +36,7 @@ def truncate_by_backing_up_bytes(s, max_bytes):
     :param max_bytes: Maximal number of bytes
     :return: The cut string
     """
+
     def safe_b_of_i(b, i):
         try:
             return b[i]
@@ -48,8 +51,11 @@ def truncate_by_backing_up_bytes(s, max_bytes):
     b = s[:max_bytes].encode('utf-8')[:max_bytes]
 
     if b[-1] & 0b10000000:
-        last_11xxxxxx_index = [i for i in range(-1, -5, -1)
-                               if safe_b_of_i(b,i) & 0b11000000 == 0b11000000][0]
+        last_11xxxxxx_index = [
+            i
+            for i in range(-1, -5, -1)
+            if safe_b_of_i(b, i) & 0b11000000 == 0b11000000
+        ][0]
         # note that last_11xxxxxx_index is negative
 
         last_11xxxxxx = b[last_11xxxxxx_index]
@@ -68,6 +74,4 @@ def truncate_by_backing_up_bytes(s, max_bytes):
 
 
 # List of the truncate functions
-truncate_funcs = [truncate_by_concating,
-                  truncate_by_backing_up_bytes,
-                  ]
+truncate_funcs = [truncate_by_concating, truncate_by_backing_up_bytes]
