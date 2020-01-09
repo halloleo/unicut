@@ -6,8 +6,11 @@ import pytest
 import hypothesis as ht
 import hypothesis.strategies as htst
 
-from truncate import truncate_funcs
-
+from truncate import (
+    truncate_funcs,
+    truncate_by_concating,
+    truncate_by_backing_up_bytes,
+)
 
 @pytest.mark.parametrize('truncate', truncate_funcs)
 class Test_manual:
